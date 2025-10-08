@@ -87,9 +87,70 @@ class JLPTN1Test {
         assertEquals("Passed with B2", grader.grade(50, 50, 40));
     }
 
-
+    /**
+     * Test case cho week 5: Kiểm thử dòng điều khiển
+     */
     @Test
     void test_doMucC1() {
         assertEquals("Passed with C1", grader.grade(60, 50, 40));
+    }
+    /**
+     * Test case cho Path 1: Điểm không hợp lệ
+     * Input: grade(99, 60, 50)
+     * Expected: "Invalid score"
+     */
+    @Test
+    void testPath1_InvalidScore() {
+        String expected = "Invalid score";
+        String actual = grader.grade(99, 60, 50);
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Test case cho Path 2: Rớt do điểm liệt
+     * Input: grade(15, 60, 50)
+     * Expected: "Failed"
+     */
+    @Test
+    void testPath2_FailedByMinimumScore() {
+        String expected = "Failed";
+        String actual = grader.grade(15, 60, 50);
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Test case cho Path 3: Rớt do tổng điểm thấp
+     * Input: grade(30, 30, 30)
+     * Expected: "Failed"
+     */
+    @Test
+    void testPath3_FailedByTotalScore() {
+        String expected = "Failed";
+        String actual = grader.grade(30, 30, 30);
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Test case cho Path 4: Đỗ C1
+     * Input: grade(50, 50, 50) -> total = 150 >= 142
+     * Expected: "Passed with C1"
+     */
+    @Test
+    void testPath4_PassedWithC1() {
+        String expected = "Passed with C1";
+        String actual = grader.grade(50, 50, 50); // Sửa lại test case cho phù hợp
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Test case cho Path 5: Đỗ B2
+     * Input: grade(40, 40, 40) -> 100 <= total = 120 < 142
+     * Expected: "Passed with B2"
+     */
+    @Test
+    void testPath5_PassedWithB2() {
+        String expected = "Passed with B2";
+        String actual = grader.grade(40, 40, 40); // Sửa lại test case cho phù hợp
+        assertEquals(expected, actual);
     }
 }
