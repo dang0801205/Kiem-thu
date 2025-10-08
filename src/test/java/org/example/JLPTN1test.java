@@ -138,7 +138,7 @@ class JLPTN1Test {
     @Test
     void testPath4_PassedWithC1() {
         String expected = "Passed with C1";
-        String actual = grader.grade(50, 50, 50); // Sửa lại test case cho phù hợp
+        String actual = grader.grade(50, 50, 50);
         assertEquals(expected, actual);
     }
 
@@ -150,7 +150,7 @@ class JLPTN1Test {
     @Test
     void testPath5_PassedWithB2() {
         String expected = "Passed with B2";
-        String actual = grader.grade(40, 40, 40); // Sửa lại test case cho phù hợp
+        String actual = grader.grade(40, 40, 40);
         assertEquals(expected, actual);
     }
 }
