@@ -153,4 +153,79 @@ class JLPTN1Test {
         String actual = grader.grade(40, 40, 40);
         assertEquals(expected, actual);
     }
-}
+
+
+    /**
+     * Test case cho week 7: Kiểm thử dòng đữ liệu
+     * Test case 1: Đầu vào không hợp lệ (ngoài miền [0, 60])
+     * Input: {70, 60, 70}
+     * Expected: "Invalid score"
+     */
+    @Test
+    void testCase1_InvalidScore() {
+        String expected = "Invalid score";
+        // Giả định thứ tự là (Vocabulary, ReadingGrammar, Listening)
+        String actual = grader.grade(70, 60, 70);
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Test case 2: Trượt do điểm liệt (18 < 19)
+     * Input: {18, 60, 60}
+     * Expected: "Failed"
+     */
+    @Test
+    void testCase2_FailedByMinScore() {
+        String expected = "Failed";
+        String actual = grader.grade(18, 60, 60);
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Test case 3: Trượt do tổng điểm (20+20+20 = 60 < 100)
+     * Input: {20, 20, 20}
+     * Expected: "Failed"
+     */
+    @Test
+    void testCase3_FailedByTotalScore() {
+        String expected = "Failed";
+        String actual = grader.grade(20, 20, 20);
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Test case 4: Đậu mức C1 (50+50+50 = 150 >= 142)
+     * Input: {50, 50, 50}
+     * Expected: "Passed with C1"
+     */
+    @Test
+    void testCase4_PassedWithC1() {
+        String expected = "Passed with C1";
+        String actual = grader.grade(50, 50, 50);
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Test case 5: Đậu mức B2 (35+35+35 = 105; 100 <= 105 < 142)
+     * Input: {35, 35, 35}
+     * Expected: "Passed with B2"
+     */
+    @Test
+    void testCase5_PassedWithB2() {
+        String expected = "Passed with B2";
+        String actual = grader.grade(35, 35, 35);
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Test case 6: Trượt do điểm liệt (có 2 điểm liệt)
+     * Input: {18, 18, 60}
+     * Expected: "Failed"
+     */
+    @Test
+    void testCase6_FailedByMultipleMinScores() {
+        String expected = "Failed";
+        String actual = grader.grade(18, 18, 60);
+        assertEquals(expected, actual);
+    }
+    }
